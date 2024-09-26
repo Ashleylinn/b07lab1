@@ -67,7 +67,7 @@ public class Polynomial {
         }
 
         return new Polynomial(finalCoefficients, finalExponents);
-    }
+	}
 	
 	public double evaluate(double x) {
 		double result = 0;
@@ -128,7 +128,7 @@ public class Polynomial {
         }
 
         return new Polynomial(finalCoefficients, finalExponents);
-    }
+	}
 
 	public Polynomial(File file) throws IOException {
 		Scanner scanner = new Scanner(file);
@@ -186,14 +186,15 @@ public class Polynomial {
 				build.append("-");
 			if (this.coefficients[i] != 1 || this.exponents[i] == 0) 
 				build.append(this.coefficients[i]);
-
-            if (this.exponents[i] > 0) {
-                build.append("x");
-                if (this.exponents[i] > 1) build.append("^").append(this.exponents[i]);
-            }
-        }
-
-        writer.write(build.toString());
-        writer.close();
+			
+			if (this.exponents[i] > 0) {
+				build.append("x");
+				if (this.exponents[i] > 1) 
+					build.append("^").append(this.exponents[i]);
+			}
+		}
+		
+		writer.write(build.toString());
+		writer.close();
 	}
 }
