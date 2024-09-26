@@ -21,52 +21,51 @@ public class Polynomial {
 	public Polynomial add(Polynomial other) {
 		int maxSize = this.coefficients.length + other.coefficients.length;
 		double[] resultCoefficients = new double[maxSize];
-        int[] resultExponents = new int[maxSize];
-        int index = 0;
-
-        for (int i = 0; i < this.coefficients.length; i++) {
-            resultCoefficients[index] = this.coefficients[i];
-            resultExponents[index] = this.exponents[i];
-            index++;
-        }
-        
-        boolean added = false;
-        for (int i = 0; i < other.coefficients.length; i++) {
-            for (int j = 0; j < index; j++) {
-            	if (resultExponents[j] == other.exponents[i]) {
-            		resultCoefficients[j] += other.coefficients[i]; 
-                    added = true;
-                    break;
-                }
-            }
-            
-            if (added == false) 
-            {
-                resultCoefficients[index] = other.coefficients[i];
-                resultExponents[index] = other.exponents[i];
-                index++;
-            }
-        }
-
-        int noZero = 0;
-        for (int i = 0; i < index; i++) {
-            if (resultCoefficients[i] != 0) {
-            	noZero++;
-            }
-        }
-
-        double[] finalCoefficients = new double[noZero];
-        int[] finalExponents = new int[noZero];
-        int finalIndex = 0;
-        for (int i = 0; i < index; i++) {
-            if (resultCoefficients[i] != 0) {
-                finalCoefficients[finalIndex] = resultCoefficients[i];
-                finalExponents[finalIndex] = resultExponents[i];
-                finalIndex++;
-            }
-        }
-
-        return new Polynomial(finalCoefficients, finalExponents);
+		int[] resultExponents = new int[maxSize];
+		int index = 0;
+		
+		for (int i = 0; i < this.coefficients.length; i++) {
+			resultCoefficients[index] = this.coefficients[i];
+			resultExponents[index] = this.exponents[i];
+			index++;
+		}
+		
+		boolean added = false;
+		for (int i = 0; i < other.coefficients.length; i++) {
+			for (int j = 0; j < index; j++) {
+				if (resultExponents[j] == other.exponents[i]) {
+					resultCoefficients[j] += other.coefficients[i]; 
+					added = true;
+					break;
+				}
+			}
+			
+			if (added == false) 
+			{
+				resultCoefficients[index] = other.coefficients[i];
+				resultExponents[index] = other.exponents[i];
+				index++;
+			}
+		}
+		
+		int noZero = 0;
+		for (int i = 0; i < index; i++) {
+			if (resultCoefficients[i] != 0) {
+				noZero++;
+			}
+		}
+		
+		double[] finalCoefficients = new double[noZero];
+		int[] finalExponents = new int[noZero];
+		int finalIndex = 0;
+		for (int i = 0; i < index; i++) {
+			if (resultCoefficients[i] != 0) {
+				finalCoefficients[finalIndex] = resultCoefficients[i];
+				finalExponents[finalIndex] = resultExponents[i];
+				finalIndex++;
+			}
+		}
+		return new Polynomial(finalCoefficients, finalExponents);
 	}
 	
 	public double evaluate(double x) {
@@ -82,52 +81,50 @@ public class Polynomial {
 	}
 	
 	public Polynomial multiply(Polynomial other) {
-        int maxSize = this.coefficients.length * other.coefficients.length;
-        double[] resultCoefficients = new double[maxSize];
-        int[] resultExponents = new int[maxSize];
-        int index = 0;
-
-        for (int i = 0; i < this.coefficients.length; i++) {
-            for (int j = 0; j < other.coefficients.length; j++) {
-                double newCoefficient = this.coefficients[i] * other.coefficients[j];
-                int newExponent = this.exponents[i] + other.exponents[j];
-
-                boolean found = false;
-                for (int k = 0; k < index; k++) {
-                    if (resultExponents[k] == newExponent) {
-                        resultCoefficients[k] += newCoefficient; 
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (found == false) {
-                    resultCoefficients[index] = newCoefficient;
-                    resultExponents[index] = newExponent;
-                    index++;
-                }
-            }
-        }
-
-        int noZero = 0;
-        for (int i = 0; i < index; i++) {
-            if (resultCoefficients[i] != 0) {
-            	noZero++;
-            }
-        }
-
-        double[] finalCoefficients = new double[noZero];
-        int[] finalExponents = new int[noZero];
-        int finalIndex = 0;
-        for (int i = 0; i < index; i++) {
-            if (resultCoefficients[i] != 0) {
-                finalCoefficients[finalIndex] = resultCoefficients[i];
-                finalExponents[finalIndex] = resultExponents[i];
-                finalIndex++;
-            }
-        }
-
-        return new Polynomial(finalCoefficients, finalExponents);
+		int maxSize = this.coefficients.length * other.coefficients.length;
+		double[] resultCoefficients = new double[maxSize];
+		int[] resultExponents = new int[maxSize];
+		int index = 0;
+		
+		for (int i = 0; i < this.coefficients.length; i++) {
+			for (int j = 0; j < other.coefficients.length; j++) {
+				double newCoefficient = this.coefficients[i] * other.coefficients[j];
+				int newExponent = this.exponents[i] + other.exponents[j];
+				
+				boolean found = false;
+				for (int k = 0; k < index; k++) {
+					if (resultExponents[k] == newExponent) {
+						resultCoefficients[k] += newCoefficient; 
+						found = true;
+						break;
+					}
+				}
+				if (found == false) {
+					resultCoefficients[index] = newCoefficient;
+					resultExponents[index] = newExponent;
+					index++;
+				}
+			}
+		}
+		
+		int noZero = 0;
+		for (int i = 0; i < index; i++) {
+			if (resultCoefficients[i] != 0) {
+				noZero++;
+			}
+		}
+		
+		double[] finalCoefficients = new double[noZero];
+		int[] finalExponents = new int[noZero];
+		int finalIndex = 0;
+		for (int i = 0; i < index; i++) {
+			if (resultCoefficients[i] != 0) {
+				finalCoefficients[finalIndex] = resultCoefficients[i];
+				finalExponents[finalIndex] = resultExponents[i];
+				finalIndex++;
+			}
+		}
+		return new Polynomial(finalCoefficients, finalExponents);
 	}
 
 	public Polynomial(File file) throws IOException {
