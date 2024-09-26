@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Driver {
 	public static void main(String[] args) throws IOException{
-		Polynomial p = new Polynomial();
+	Polynomial p = new Polynomial();
         System.out.println(p.evaluate(3)); 
         
         double[] c1 = {6, -2, 5};
